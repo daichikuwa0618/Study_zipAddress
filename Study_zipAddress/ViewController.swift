@@ -20,7 +20,22 @@ class ViewController: UIViewController {
         // リクエストするURLを作成
         let urlStr = "http://api.zipaddress.net/?zipcode=\(ziptext)"
         // 確認用
-        print(urlStr)
+        //print(urlStr)
+        
+        if let url = NSURL(string: urlStr) {
+            // URLオブジェクトがnilでなければ検索処理オブジェクトを作成
+            let urlSession = NSURLSession.sharedSetssion()
+            // 「検索処理が完了するとonGetAddressを呼び出す」というタスクの作成
+            let task = urlSession.dataTaskWithURL(url, completionHandler: self.onGetAddress)
+            // タスク終了
+            task.resume()
+        }
+    }
+    
+    // 検索処理の終了で実行
+    func onGetAddress(data: NSData?, res: NSURLRsponse?, error: NSError) {
+        // 確認のためdataの実行
+        print(data)
     }
 
     override func viewDidLoad() {
