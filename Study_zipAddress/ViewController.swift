@@ -9,6 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var zipTextField: UITextField!
+    @IBAction func tapReturn() {
+    }
+    @IBAction func tapSearch() {
+        guard let ziptext = zipTextField.text else{
+            // 値がnilであれば終了する
+            return
+        }
+        // リクエストするURLを作成
+        let urlStr = "http://api.zipaddress.net/?zipcode=\(ziptext)"
+        // 確認用
+        print(urlStr)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
