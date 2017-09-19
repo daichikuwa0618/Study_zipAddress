@@ -24,16 +24,16 @@ class ViewController: UIViewController {
         
         if let url = NSURL(string: urlStr) {
             // URLオブジェクトがnilでなければ検索処理オブジェクトを作成
-            let urlSession = NSURLSession.sharedSetssion()
+            let urlSession = URLSession.shared
             // 「検索処理が完了するとonGetAddressを呼び出す」というタスクの作成
-            let task = urlSession.dataTaskWithURL(url, completionHandler: self.onGetAddress)
+            let task = urlSession.dataTaskWithURL(url as URL, completionHandler: self.onGetAddress)
             // タスク終了
             task.resume()
         }
     }
     
     // 検索処理の終了で実行
-    func onGetAddress(data: NSData?, res: NSURLRsponse?, error: NSError) {
+    func onGetAddress(data: NSData?, res: URLResponse?, error: NSError) {
         // 確認のためdataの実行
         print(data)
     }
